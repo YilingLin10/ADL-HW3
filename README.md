@@ -60,3 +60,36 @@ python eval.py -r public.jsonl -s submission.jsonl
 
 ## Reference
 [cccntu/tw_rouge](https://github.com/cccntu/tw_rouge)
+
+## Environment Setup (Python 3.8)
+```
+pip install -r requirements.txt
+```
+```
+python -m pip install setuptools==59.5.0
+```
+### Install fixed version transformers library
+```
+git clone https://github.com/huggingface/transformers.git
+git checkout t5-fp16-no-nans
+pip install -e .
+
+```
+## Training 
+* /PATH/TO/TRAIN_FILE: path to your train file
+* /PATH/TO/OUTPUT_DIR: path to your output directory
+```
+CUDA_VISIBLE_DEVICES=0 accelerate launch --config_file accelerator_config.yaml accelerate_title.py    \
+  --seed 23 \
+  --model_name_or_path google/mt5-small \
+  --train_file /PATH/TO/TRAIN_FILE \
+  --output_dir /PATH/TO/OUTPUT_DIR  \
+  --learning_rate 1e-3 \
+  --num_train_epochs 4 \
+  --per_device_eval_batch_size 8 \
+  --per_device_train_batch_size 8 \
+  --gradient_accumulation_steps 2 \
+  --num_beams 5 \
+  --checkpointing_steps 600  \
+  --eval_steps 600
+```
