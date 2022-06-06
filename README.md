@@ -1,5 +1,6 @@
 # ADL22-HW3
 Dataset & evaluation script for ADL 2022 homework 3
+https://www.csie.ntu.edu.tw/~miulab/s110-adl/doc/A3_NLG.pdf
 
 ## Dataset
 [download link](https://drive.google.com/file/d/186ejZVADY16RBfVjzcMcz9bal9L3inXC/view?usp=sharing)
